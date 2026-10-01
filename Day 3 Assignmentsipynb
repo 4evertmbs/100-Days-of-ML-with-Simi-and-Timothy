@@ -1,0 +1,1382 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPSxvBWfKe3IMDhyPGSpDjI",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/4evertmbs/100-Days-of-ML-with-Simi-and-Timothy/blob/main/Day%203%20Assignmentsipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "z-3KAL-4culn"
+      },
+      "outputs": [],
+      "source": [
+        "import numpy as np"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "waiting_times = np.array([25, 40, 35, 50, 30,\n",
+        "                          45, 20, 60, 55, 35,\n",
+        "                          40, 30, 25, 70, 45])"
+      ],
+      "metadata": {
+        "id": "aMA-5nFkcyBZ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "waiting_times"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_tx1u-TzczwD",
+        "outputId": "53054ea4-7c1d-4df6-d720-df70c3409d34"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([25, 40, 35, 50, 30, 45, 20, 60, 55, 35, 40, 30, 25, 70, 45])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 4
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(type(waiting_times))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uMVjDrWpc1vK",
+        "outputId": "6c05421f-9783-4786-acea-edc7daec26fe"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "<class 'numpy.ndarray'>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "total_waiting_times = np.sum(waiting_times)"
+      ],
+      "metadata": {
+        "id": "HdtJocz9eVcy"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"Total waiting time:\", total_waiting_times, \"minutes\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uWptn8P2ej-u",
+        "outputId": "0dac718e-5057-46d0-a4a9-d90d3376491a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Total waiting time: 605 minutes\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "average_waiting_time = np.mean(waiting_times)\n",
+        "print(\"Average waiting time:\", average_waiting_time, \"minutes\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "-7ux4Z_ielfR",
+        "outputId": "538a033b-8ba7-4d82-8a05-199f1f9857cf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Average waiting time: 40.333333333333336 minutes\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "shortest_wait = np.min(waiting_times)\n",
+        "longest_wait = np.max(waiting_times)\n",
+        "print(\"Shortest wait:\", shortest_wait, \"minutes\")\n",
+        "print(\"Longest wait:\", longest_wait, \"minutes\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3JAiTDQLjF46",
+        "outputId": "e4653961-1003-4bcb-bb15-fc1776c0b6f9"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Shortest wait: 20 minutes\n",
+            "Longest wait: 70 minutes\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "deviations = waiting_times - average_waiting_time\n",
+        "print(\"deviations:\", deviations)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4izU0zkVncVV",
+        "outputId": "23080625-0a3b-4120-96a9-997c20ebf9fc"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "deviations: [-15.33333333  -0.33333333  -5.33333333   9.66666667 -10.33333333\n",
+            "   4.66666667 -20.33333333  19.66666667  14.66666667  -5.33333333\n",
+            "  -0.33333333 -10.33333333 -15.33333333  29.66666667   4.66666667]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "squared_deviations = deviations ** 2\n",
+        "print(\"squared_deviations:\", squared_deviations)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eCoKPiZbnzb-",
+        "outputId": "9cf1d111-d67e-44d2-fbc4-4c14ce64275f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "squared_deviations: [2.35111111e+02 1.11111111e-01 2.84444444e+01 9.34444444e+01\n",
+            " 1.06777778e+02 2.17777778e+01 4.13444444e+02 3.86777778e+02\n",
+            " 2.15111111e+02 2.84444444e+01 1.11111111e-01 1.06777778e+02\n",
+            " 2.35111111e+02 8.80111111e+02 2.17777778e+01]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sum_squared_deviations = np.sum(squared_deviations)\n",
+        "print(\"sum_squared_deviations:\", sum_squared_deviations)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "uk_tM6zGpcGm",
+        "outputId": "19019b56-65fb-48e7-ead1-199a067d7e9d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "sum_squared_deviations: 2773.3333333333335\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "n = len(waiting_times)\n",
+        "variance = sum_squared_deviations / (n - 1)\n",
+        "print(\"variance:\", variance)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "n4H3quANpjo7",
+        "outputId": "da1e9f39-5dcf-4e03-cc57-6f80df8368be"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "variance: 198.0952380952381\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "std_deviation = np.sqrt(variance)\n",
+        "print(\"std_deviation:\", std_deviation)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "3F_N4pf7uiyH",
+        "outputId": "ce760c7d-e4eb-4d70-bd7f-58496872e9bf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "std_deviation: 14.074631010979937\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Interpretation: The hospital recorded 605 minutes of total waiting time, with an average of 40.33 minutes per patient. Waiting times ranged from 20 to 70 minutes, showing significant variation that may affect patient satisfaction.  "
+      ],
+      "metadata": {
+        "id": "ywGbHArnwUYk"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "2. Bonus Challenge"
+      ],
+      "metadata": {
+        "id": "4WuGOCESxjkK"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "above_average = waiting_times[waiting_times > average_waiting_time]\n",
+        "print(\"above_average:\", above_average)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HcY5gQIxxxaT",
+        "outputId": "16a3e57e-a3d4-4028-8916-6804070514e6"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "above_average: [50 45 60 55 70 45]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "count_above_average = len(above_average)\n",
+        "print(\"count_above_average:\", count_above_average)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "y0ZOEt2LAdIa",
+        "outputId": "b0456c98-984b-4f64-fc8f-3a848d4d3ee2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "count_above_average: 6\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Extra Bonus"
+      ],
+      "metadata": {
+        "id": "wfkcQ6MlAu7r"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "percentage_above_average = (count_above_average / n) * 100\n",
+        "print(\"percentage_above_average:\", percentage_above_average)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zRhPs-aCA364",
+        "outputId": "0ee21173-446a-45d1-c298-1eee00e85ad1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "percentage_above_average: 40.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# 40% of the patients waited longer than the average waiting time"
+      ],
+      "metadata": {
+        "id": "Izz5PonfA-F6"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Exercise 2"
+      ],
+      "metadata": {
+        "id": "avAaGkxAEzwu"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as pp"
+      ],
+      "metadata": {
+        "id": "HQN6tprlBYDk"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sales = pp.array([125000, 98000, 145000, 110000, 175000,\n",
+        "                  160000, 135000, 190000, 155000, 210000])\n",
+        "\n",
+        "print(sales)\n",
+        "print(type(sales))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bZKv3cPaCXS3",
+        "outputId": "0b73cb03-da03-4f16-e039-ededefe20090"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[125000  98000 145000 110000 175000 160000 135000 190000 155000 210000]\n",
+            "<class 'numpy.ndarray'>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "total_revenue = pp.sum(sales)\n",
+        "print(\"total_revenue:\", total_revenue)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ZRJLkbqVE8Z4",
+        "outputId": "4d2876e4-c068-4fa3-fa28-46c1333343cc"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "total_revenue: 1503000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "average_sales = pp.mean(sales)\n",
+        "print(\"average_sales:\", average_sales)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "zn99tvPDEg_7",
+        "outputId": "cd3cc214-fd0d-4233-f084-4478d9ec8c27"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "average_sales: 150300.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#the company made 150,300 Naira per day."
+      ],
+      "metadata": {
+        "id": "NFefNqFXFJFa"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "highest_sale = pp.max(sales)\n",
+        "lowest_sale = pp.min(sales)\n",
+        "print(\"highest_sale:\", highest_sale)\n",
+        "print(\"lowest_sale:\", lowest_sale)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "HZG-Oih0FTip",
+        "outputId": "b10357ac-3923-4df8-c9a9-d66c80668b95"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "highest_sale: 210000\n",
+            "lowest_sale: 98000\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#The best day earned 210,000 Naira while the worst day earned 98,000 Naira."
+      ],
+      "metadata": {
+        "id": "UPvpi3SWFgta"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sales_differences = sales - average_sales\n",
+        "print(\"sales_differences:\", sales_differences)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "omDRsGRIFkeD",
+        "outputId": "812cdcc1-c1ae-4def-e3a4-b54ab067945f"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "sales_differences: [-25300. -52300.  -5300. -40300.  24700.   9700. -15300.  39700.   4700.\n",
+            "  59700.]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "squared_differences = sales_differences ** 2\n",
+        "print(\"squared_differences:\", squared_differences)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bkuoePvrF4Pj",
+        "outputId": "f3f71296-3edb-4889-afec-1536e5ee7056"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "squared_differences: [6.40090e+08 2.73529e+09 2.80900e+07 1.62409e+09 6.10090e+08 9.40900e+07\n",
+            " 2.34090e+08 1.57609e+09 2.20900e+07 3.56409e+09]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "projected_sales = sales * 1.10\n",
+        "print(\"Projected sales (#10% increase):\")\n",
+        "print(projected_sales)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "I2tOQ_feGBsv",
+        "outputId": "afecbcc5-e1ed-4f9a-ccda-7fad5f4b79c7"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Projected sales (#10% increase):\n",
+            "[137500. 107800. 159500. 121000. 192500. 176000. 148500. 209000. 170500.\n",
+            " 231000.]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#comparing projected sales and real sales"
+      ],
+      "metadata": {
+        "id": "fi0H_QXDGrwi"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "additional_revenue = projected_sales - sales\n",
+        "print(\"additional_revenue:\", additional_revenue)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Qp8s3XafG4Uf",
+        "outputId": "59a1f466-101c-42bd-b84e-4175af468fcf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "additional_revenue: [12500.  9800. 14500. 11000. 17500. 16000. 13500. 19000. 15500. 21000.]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "total_additional_revenue = pp.sum(additional_revenue)\n",
+        "print(total_additional_revenue)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "nVITuP-krez5",
+        "outputId": "20c3f950-8b10-4bd5-bb19-251abe317c82"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "150300.00000000012\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "A 10% increase would add ₦150,300 in total revenue which is a 10% of the total revenue"
+      ],
+      "metadata": {
+        "id": "ONRkLUOVr-sa"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The retail company generated ₦1,503,000 in total revenue over 10 days, with an average of ₦150,300 per day. Sales ranged from ₦98,000 to ₦210,000, showing noticeable variation between days.\n",
+        "\n",
+        "A 10% increase in sales would generate an additional ₦150,300, bringing total revenue to ₦1,653,300. This can help management plan for growth and set future sales targets."
+      ],
+      "metadata": {
+        "id": "lUIc0JY2suOY"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Bonus Challenge\n",
+        "above_average_sales = sales[sales > average_sales]\n",
+        "print(\"above_average_sales:\", above_average_sales)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "YMZ0KPj_sxfF",
+        "outputId": "1a5c261f-6bfa-4ec6-fa7d-528832852c86"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "above_average_sales: [175000 160000 190000 155000 210000]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "count_above_average_sales = len(above_average_sales)\n",
+        "print(\"count_above_average_sales:\", count_above_average_sales)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Ov6FKUvIs7Gy",
+        "outputId": "769f680e-914a-4596-8aec-096e67401598"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "count_above_average_sales: 5\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "percentage_of_days_above_average = (count_above_average_sales / len(sales)) * 100\n",
+        "print(\"percentage_of_days_above_average:\", percentage_of_days_above_average)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "4CrvrHQvtUzL",
+        "outputId": "75014ffe-8b11-4570-ba6d-49dc714b4efa"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "percentage_of_days_above_average: 50.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Half of the days performed above average"
+      ],
+      "metadata": {
+        "id": "u--a9Tpbu_tJ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "#Extra Bonus\n",
+        "commission = sales * .05\n",
+        "commission"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "f4SFkP_2wEgz",
+        "outputId": "1e527d24-fa4a-49a9-ce1c-3436a2005372"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "array([ 6250.,  4900.,  7250.,  5500.,  8750.,  8000.,  6750.,  9500.,\n",
+              "        7750., 10500.])"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 36
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "total_commission = pp.sum(commission)\n",
+        "print(total_commission)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vhDrBniJwKkT",
+        "outputId": "7f51e44d-cc7b-4cf4-ef89-1987d9b195f5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "75150.0\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# The total commission across in days is 75,150 Naira."
+      ],
+      "metadata": {
+        "id": "vCjOR8JpweWX"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Exercise 3."
+      ],
+      "metadata": {
+        "id": "1wAYDTiqwszz"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import numpy as pdp"
+      ],
+      "metadata": {
+        "id": "Uodc4Lupwwgv"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "energy = pdp.array([120, 135, 150, 160, 175, 190, 210, 225,\n",
+        "                   230, 220, 205, 195, 185, 170, 160, 150,\n",
+        "                   145, 155, 165, 180, 195, 210, 200, 180])\n",
+        "\n",
+        "print(energy)\n",
+        "print(type(energy))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "byO4G3Z7w2_P",
+        "outputId": "bde278c1-d1a7-4b01-8a90-d1fa91963a4a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[120 135 150 160 175 190 210 225 230 220 205 195 185 170 160 150 145 155\n",
+            " 165 180 195 210 200 180]\n",
+            "<class 'numpy.ndarray'>\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "hours = pdp.arange(1, 25)\n",
+        "print('Hours:', hours)\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "92jPoM9TxSKh",
+        "outputId": "0140cabc-7cff-406b-9274-2c5b9ab68784"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Hours: [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "total_energy = pdp.sum(energy)\n",
+        "print(\"total_energy:\", total_energy, \"kWh\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "onpZhTcKxmAB",
+        "outputId": "192108e8-34df-494a-b254-489d36d699d1"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "total_energy: 4310 kWh\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "average_energy = pdp.mean(energy)\n",
+        "print(\"average_energy:\", average_energy, \"kWh\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "8bmenxWOx-5V",
+        "outputId": "0fd60611-4c5e-40b1-832b-91bb6bbb54ae"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "average_energy: 179.58333333333334 kWh\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "min_energy = pdp.min(energy)\n",
+        "max_energy = pdp.max(energy)\n",
+        "print(\"min_energy:\", min_energy, \"kWh\")\n",
+        "print(\"max_energy:\", max_energy, \"kWh\")\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bRCM97DU14wC",
+        "outputId": "b8114b92-25cc-4fbb-d51d-55a9224c7dde"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "min_energy: 120 kWh\n",
+            "max_energy: 230 kWh\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "energy_deviation = energy - average_energy\n",
+        "print(\"energy_deviation:\", energy_deviation)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "N_sE17fF2cKe",
+        "outputId": "842a1293-0040-4be9-c8a3-f3c9ad648ea2"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "energy_deviation: [-59.58333333 -44.58333333 -29.58333333 -19.58333333  -4.58333333\n",
+            "  10.41666667  30.41666667  45.41666667  50.41666667  40.41666667\n",
+            "  25.41666667  15.41666667   5.41666667  -9.58333333 -19.58333333\n",
+            " -29.58333333 -34.58333333 -24.58333333 -14.58333333   0.41666667\n",
+            "  15.41666667  30.41666667  20.41666667   0.41666667]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "squared_deviations = energy_deviation ** 2\n",
+        "print(\"squared_deviations:\", squared_deviations)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Lo_Y0nmN2lCG",
+        "outputId": "e4100b48-2e74-4ff9-bbcb-b6e9b642aa85"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "squared_deviations: [3.55017361e+03 1.98767361e+03 8.75173611e+02 3.83506944e+02\n",
+            " 2.10069444e+01 1.08506944e+02 9.25173611e+02 2.06267361e+03\n",
+            " 2.54184028e+03 1.63350694e+03 6.46006944e+02 2.37673611e+02\n",
+            " 2.93402778e+01 9.18402778e+01 3.83506944e+02 8.75173611e+02\n",
+            " 1.19600694e+03 6.04340278e+02 2.12673611e+02 1.73611111e-01\n",
+            " 2.37673611e+02 9.25173611e+02 4.16840278e+02 1.73611111e-01]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "sum_squared_deviations = pdp.sum(squared_deviations)\n",
+        "print(\"sum_squared_deviations:\", sum_squared_deviations)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "hyfhy9Jf_jjN",
+        "outputId": "29e6834b-5a98-4a2e-9988-afbd7fb0120d"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "sum_squared_deviations: 19945.833333333336\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "efficient_energy = energy * 0.92  # 100% - 8% = 92%\n",
+        "print(\"Energy consumption after 8% reduction:\", efficient_energy)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "1xafahCp_oXY",
+        "outputId": "f0061bc6-29f5-4cd9-a277-f63ade0c19a5"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Energy consumption after 8% reduction: [110.4 124.2 138.  147.2 161.  174.8 193.2 207.  211.6 202.4 188.6 179.4\n",
+            " 170.2 156.4 147.2 138.  133.4 142.6 151.8 165.6 179.4 193.2 184.  165.6]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "energy_saved = energy - efficient_energy\n",
+        "print(\"Energy saved:\", energy_saved)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cdh5KCfW_4a9",
+        "outputId": "f867da03-7f32-4e58-a3ef-604b5620ff5b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Energy saved: [ 9.6 10.8 12.  12.8 14.  15.2 16.8 18.  18.4 17.6 16.4 15.6 14.8 13.6\n",
+            " 12.8 12.  11.6 12.4 13.2 14.4 15.6 16.8 16.  14.4]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "total_energy_saved = pdp.sum(energy_saved)\n",
+        "print(\"Total energy saved:\", total_energy_saved, 'kWh')"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Cp28EexCCtcg",
+        "outputId": "52d5c387-32bb-480d-a131-3835f4f00c9e"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Total energy saved: 344.79999999999984 kWh\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "The company could save about 344.8 kWh with an 8% reduction in energy use. Average consumption was 179.6 kWh per hour, ranging from 120 kWh to 230 kWh. This variation can help identify the hours with the highest energy use and target them for efficiency improvements.\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "rAbwRkvzDY8j"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Bonus Challenge\n"
+      ],
+      "metadata": {
+        "id": "Mf6z9rSctNBB"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "above_average_energy = energy[energy > average_energy]\n",
+        "print(\"above_average_energy:\", above_average_energy)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "eDSGrMI3tPEv",
+        "outputId": "a89b7d91-20c2-48b0-dae4-75a020efac19"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "above_average_energy: [190 210 225 230 220 205 195 185 180 195 210 200 180]\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "count_above_average_energy = len(above_average_energy)\n",
+        "print(\"count_above_average_energy:\", count_above_average_energy)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "aWxtqBhrtXIV",
+        "outputId": "f5eb1bd7-2823-4b1f-993b-07a55db6bddf"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "count_above_average_energy: 13\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "percentage_of_hours_above_average = (count_above_average_energy / len(hours)) * 100\n",
+        "print(\"percentage_of_hours_above_average:\", percentage_of_hours_above_average)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "S8beGbovt2J6",
+        "outputId": "40f36eaa-bfbe-47c9-f42e-3eb2146551e8"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "percentage_of_hours_above_average: 54.166666666666664\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "highest_consumption = pdp.max(energy)\n",
+        "print(\"highest_consumption:\", highest_consumption, \"kWh\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EdRSXbL6wdY_",
+        "outputId": "10902366-cb97-4e65-d5ec-453020214804"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "highest_consumption: 230 kWh\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Extra Bonus\n"
+      ],
+      "metadata": {
+        "id": "ZylkWsSZ1eZ5"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "max_index = pdp.argmax(energy)\n",
+        "print(\"max_index:\", max_index)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BTvFHXcY1gjR",
+        "outputId": "64e3ec02-1fa2-4d32-f9c5-6ab0c2b3b12b"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "max_index: 8\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "max_energy_hour = hours[max_index]\n",
+        "print(\"max_energy_hour:\", max_energy_hour)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "quT9Oxkz2eKd",
+        "outputId": "048580ac-ee6e-4abc-beac-0fd5844d077a"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "max_energy_hour: 9\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "peak_value = energy[max_index]\n",
+        "print(\"peak_value:\", peak_value)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "CnbXd6Tq2pos",
+        "outputId": "58958b7f-4245-4b52-f53f-ebd3a8e47642"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "peak_value: 230\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "euTR_JPB27-L"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
